@@ -1,0 +1,16 @@
+# Ignore common system and IDE files
+.DS_Store
+.vscode
+.idea
+venv
+
+# Ignore external packages
+node_modules
+
+# Ignore .env files for security purposes (however keep .env.example)
+.env
+.env.*
+!.env.example
+
+# Ignore proprietary files (e.g. scripts modifying environment variables)
+.internal

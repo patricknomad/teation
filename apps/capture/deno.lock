@@ -1,0 +1,15 @@
+{
+  "version": "2",
+  "remote": {},
+  "npm": {
+    "specifiers": {
+      "nice-try": "nice-try@3.0.1"
+    },
+    "packages": {
+      "nice-try@3.0.1": {
+        "integrity": "sha512-Fge6ClHO5v/z/tN31B2wlCPfRm289/ag1O2oi+EWNdAhxOZqGW1fWsisROvUuXaE7UEAYdd+upiAMvz57bK2MQ==",
+        "dependencies": {}
+      }
+    }
+  }
+}

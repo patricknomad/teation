@@ -1,0 +1,16 @@
+# Ignore common system and IDE files
+.vscode
+.idea
+
+# Prevent running on built or cache files
+/build
+/package
+/.svelte-kit
+/.cache
+
+/src/lib/server/data/data
+
+# Ignore package manager lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock

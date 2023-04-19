@@ -1,0 +1,16 @@
+{
+	"name": "@patricknomad/teation-capture",
+	"type": "module",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"combine": "node src/combine/combine.mjs",
+		"lint": "prettier --check .",
+		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"@types/node": "^18.15.11",
+		"prettier": "^2.8.7",
+		"using-try-catch": "^0.4.0"
+	}
+}

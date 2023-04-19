@@ -1,0 +1,8 @@
+{
+	"imports": {
+		"types/": "./types/",
+		"utils/": "./utils/",
+		"common/": "./common/",
+		"config": "./common/config.ts"
+	}
+}

@@ -1,0 +1,19 @@
+name: ai-initializer
+
+services:
+  initializer:
+    image: "deepset/haystack:base-cpu-v1.15.1"
+    volumes:
+      - ./data:/opt/data
+      - ./scripts:/opt/scripts
+    restart: "no"
+    environment:
+      - COMPOSE_PROJECT_NAME
+      - TOKENIZERS_PARALLELISM=false
+      - HAYSTACK_TELEMETRY_ENABLED=False
+    command: "python3 /opt/scripts/initialize.py"
+
+networks:
+  default:
+    name: external-podcast-project
+    external: true

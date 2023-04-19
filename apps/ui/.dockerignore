@@ -1,0 +1,13 @@
+.git
+.DS_Store
+.vscode
+.idea
+
+node_modules
+
+/build
+/.svelte-kit
+/package
+
+.env
+.env.*

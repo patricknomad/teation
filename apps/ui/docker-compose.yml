@@ -1,0 +1,23 @@
+services:
+  node-local:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    ports:
+      - 80:80
+    restart: on-failure
+    volumes:
+      - ./.cache:/app/.cache
+    environment:
+      - PORT=80
+      - ORIGIN=http://teation.test
+      - PUBLIC_BRANDING_NAME=Teation
+      - PUBLIC_BRANDING_SLUG=teation
+      - PUBLIC_BRANDING_TAGLINE=Dive into deep conversations
+      - PUBLIC_NO_INDEX=true
+      - AI_SERVER_URL=http://podcast-ai-api:8000
+
+networks:
+  default:
+    name: external-podcast-project
+    external: true

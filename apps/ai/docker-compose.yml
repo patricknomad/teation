@@ -1,0 +1,44 @@
+services:
+  podcast-ai-api:
+    image: "deepset/haystack:cpu-v1.15.1"
+    volumes:
+      - ./pipelines:/opt/pipelines
+    ports:
+      - 8000:8000
+    restart: on-failure
+    environment:
+      - DOCUMENTSTORE_PARAMS_HOST=elasticsearch
+      - PIPELINE_YAML_PATH=/opt/pipelines/pipeline.yml
+      - TOKENIZERS_PARALLELISM=false
+      - HAYSTACK_TELEMETRY_ENABLED=False
+
+      # Starts REST API with only 2 workers so that it can be run on systems with just 4GB of memory
+      - GUNICORN_CMD_ARGS="-k uvicorn.workers.UvicornWorker --workers 2 --timeout 180"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.17.9"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    restart: on-failure
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+    healthcheck:
+      test: curl --fail http://localhost:9200/_cat/health || exit 1
+      interval: 10s
+      timeout: 1s
+      retries: 10
+
+networks:
+  default:
+    name: external-podcast-project
+    external: true
+
+volumes:
+  esdata:
+    driver: local

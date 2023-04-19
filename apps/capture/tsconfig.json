@@ -1,0 +1,11 @@
+{
+	"importMap": "./import-map.json",
+	"compilerOptions": {
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
+		"allowSyntheticDefaultImports": true,
+		"downlevelIteration": true,
+		"module": "es2022",
+		"target": "es2022"
+	}
+}

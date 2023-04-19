@@ -1,0 +1,23 @@
+version: 1.15.1
+
+components:
+  - name: DocumentStore
+    type: ElasticsearchDocumentStore
+    # Host set via DOCUMENTSTORE_PARAMS_HOST in docker-compose
+  - name: Retriever
+    type: BM25Retriever
+    params:
+      document_store: DocumentStore
+      top_k: 10
+  - name: Reader
+    type: FARMReader
+    params:
+      model_name_or_path: deepset/roberta-base-squad2
+      top_k: 10
+pipelines:
+  - name: query
+    nodes:
+      - name: Retriever
+        inputs: [Query]
+      - name: Reader
+        inputs: [Retriever]
